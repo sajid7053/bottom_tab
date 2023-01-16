@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle, Platform } from 'react-native';
 import {
   TapGestureHandler,
   TapGestureHandlerGestureEvent,
@@ -69,7 +69,7 @@ const Ripple: React.FC<RippleProps> = ({
       height: circleRadius * 2,
       borderRadius: circleRadius,
       opacity: rippleOpacity.value,
-      backgroundColor: 'rgba(0,0,0,0.2)',
+      backgroundColor: Platform.OS==='ios' ? 'gray' : 'rgba(0,0,0,0.2)',
       position: 'absolute',
       top: 0,
       left: 0,

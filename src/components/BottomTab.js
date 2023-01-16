@@ -112,16 +112,16 @@ const styles = StyleSheet.create({
         opacity: 0.5
     },
     ripple: {
-        width: 100,
-        height: 100,
+        width: Platform.OS==='ios' ? 250 : 100,
+        height: Platform.OS==='ios' ? 250 : 100,
         // backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
         // borderRadius: 25,
         // iOS
-        shadowOpacity: 0.2,
-        shadowOffset: { width: 0, height: 0 },
-        shadowRadius: 20,
+        // shadowOpacity: 0.2,
+        // shadowOffset: { width: 0, height: 0 },
+        // shadowRadius: 20,
         // Android
         elevation: 2,
     },
