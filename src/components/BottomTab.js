@@ -12,6 +12,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import Icon, { Icons } from './Icons';
 import { inject, observer } from 'mobx-react'
 import LoginScreen from '../screens/LoginScreen';
+import Ripple from './Ripple';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 
@@ -28,16 +30,16 @@ const TabButton = inject('auth')(observer((props) => {
     const { item, onPress, accessibilityState, auth } = props;
     const focused = accessibilityState.selected;
     return (
-        <View style={styles.container}>
-            <Pressable style={({ pressed }) => pressed && styles.pressItem} onPress={onPress} android_ripple={{ borderless: true, radius: 50 }}>
-                <Icon type={item.icon === Icons.Feather ? (auth.loggedIn ? Icons.MaterialCommunityIcons : Icons.Feather) : item.icon} name={item.name === 'more-horizontal' ? (auth.loggedIn ? 'account' : 'more-horizontal') : item.name} color={focused ? item.activeColor : item.inactiveColor} size={item.size} />
+        <GestureHandlerRootView style={styles.container}>
+                <Ripple style={styles.ripple} onTap={() => onPress()}>
+                    <Icon type={item.icon === Icons.Feather ? (auth.loggedIn ? Icons.MaterialCommunityIcons : Icons.Feather) : item.icon} name={item.name === 'more-horizontal' ? (auth.loggedIn ? 'account' : 'more-horizontal') : item.name} color={focused ? item.activeColor : item.inactiveColor} size={item.size} />
 
-                {/* <Text style={{ color: 'black', fontWeight: '500',}}>
+                    {/* <Text style={{ color: 'black', fontWeight: '500',}}>
                     {item.label}
                 </Text> */}
 
-            </Pressable>
-        </View>
+                </Ripple>
+        </GestureHandlerRootView>
     )
 }))
 
@@ -91,6 +93,14 @@ const BottomTab = inject('auth')(observer((props) => {
 
 }));
 
+// const Bottom = () => {
+//     return (
+//         <GestureHandlerRootView>
+//             <BottomTab />
+//         </GestureHandlerRootView>
+//     )
+// }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -100,7 +110,21 @@ const styles = StyleSheet.create({
     },
     pressItem: {
         opacity: 0.5
-    }
+    },
+    ripple: {
+        width: 100,
+        height: 100,
+        // backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // borderRadius: 25,
+        // iOS
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 20,
+        // Android
+        elevation: 2,
+    },
 })
 
 export default BottomTab

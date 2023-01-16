@@ -32,6 +32,9 @@ import LoginScreen from './src/screens/LoginScreen';
 import { Provider } from 'mobx-react';
 import { stores } from './store';
 import MySanar from './src/screens/MySanar';
+import BottomIcon from './src/components/BottomIcon';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -68,6 +71,7 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
 
   return (
     <Provider {...stores}>
